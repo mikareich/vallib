@@ -4,7 +4,11 @@ import { z } from 'zod'
 import APIError from './errors'
 
 /** Transforms the data to the correct type */
-function transformData(data: string, headers: Headers, schema?: z.ZodSchema) {
+export default function transformData(
+  data: string,
+  headers: Headers,
+  schema?: z.ZodSchema,
+) {
   let parsedData: any
   const isJSON = headers.get('content-type')?.includes('application/json')
 
@@ -17,5 +21,3 @@ function transformData(data: string, headers: Headers, schema?: z.ZodSchema) {
 
   return parsedData
 }
-
-export default transformData

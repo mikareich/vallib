@@ -1,20 +1,15 @@
 import fetch, { BodyInit, RequestInit } from 'node-fetch'
-import zod from 'zod'
 
 import { getDefaultAgent } from './agent'
 import APIError from './errors'
+import generateTag from './generateTag'
 import { getDefaultHeaders } from './headers'
 import transformData from './transformData'
-import { RequestMethod, RequestOptions } from './types'
+import { RequestMethod, RequestOptions, ResponseObject } from './types'
 
 /** Creates a request to the api with the given method and body */
-async function request<
+export default async function request<
   Options extends RequestOptions = RequestOptions,
-  Data = Options['unsafeSkipValidation'] extends true
-    ? string
-    : Options['schema'] extends zod.Schema<infer S>
-      ? S
-      : Record<string, unknown> | string,
 >(method: RequestMethod, url: string, body?: BodyInit, options?: Options) {
   // set headers: apply default headers and cookies
   const headers = options?.headers || getDefaultHeaders()
@@ -40,11 +35,58 @@ async function request<
     data = transformData(rawData, response.headers, options?.schema)
   }
 
+  const tag = generateTag(
+    {
+      headers,
+      url,
+      body: finalOptions.body,
+      method,
+    },
+    rawData,
+    options?.prefix || '',
+  )
+
   return {
-    data: data as Data,
+    /** The formatted data returned by the api */
+    data,
+    /** The headers returned by the api */
     headers: response.headers,
+    /** The status code returned by the api */
     status: response.status,
-  }
+    /** Request tag */
+    tag,
+  } as ResponseObject<Options>
 }
 
-export default request
+/** Sends a GET request to the specified url */
+export const GET = <Options extends RequestOptions = RequestOptions>(
+  url: string,
+  options?: Options,
+) => request('GET', url, undefined, options)
+
+/** Sends a POST request to the specified url */
+export const POST = <Options extends RequestOptions = RequestOptions>(
+  url: string,
+  body: BodyInit,
+  options?: Options,
+) => request('POST', url, body, options)
+
+/** Sends a PUT request to the specified url */
+export const PUT = <Options extends RequestOptions = RequestOptions>(
+  url: string,
+  body: BodyInit,
+  options?: Options,
+) => request('PUT', url, body, options)
+
+/** Sends a PATCH request to the specified url */
+export const PATCH = <Options extends RequestOptions = RequestOptions>(
+  url: string,
+  body: BodyInit,
+  options?: Options,
+) => request('PATCH', url, body, options)
+
+/** Sends a DELETE request to the specified url */
+export const DELETE = <Options extends RequestOptions = RequestOptions>(
+  url: string,
+  options?: Options,
+) => request('DELETE', url, undefined, options)

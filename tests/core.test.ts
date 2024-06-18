@@ -1,12 +1,9 @@
 import https from 'node:https'
 
-import { config } from 'dotenv'
 import { z } from 'zod'
 
 import { core } from '../src'
 import APIError from '../src/core/errors'
-
-config()
 
 const { request, headers: reqHeaders } = core
 
@@ -17,7 +14,7 @@ describe('executes simple requests', () => {
       'https://httpbin.org/get',
       undefined,
       {
-        httpsAgent: new https.Agent({}),
+        httpsAgent: new https.Agent({}), // default https options not working for this url
       },
     )
 

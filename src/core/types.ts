@@ -3,14 +3,13 @@ import https from 'node:https'
 import { Headers } from 'node-fetch'
 import zod from 'zod'
 
-/** Credentials for the proxy. */
-export type ProxyConfig = {
-  protocol: string
-  host: string
-  port: number
-  username: string
-  password: string
-}
+/** The final and formatted data returned by the api */
+type ResponseData<Options extends RequestOptions = RequestOptions> =
+  Options['unsafeSkipValidation'] extends true
+    ? string
+    : Options['schema'] extends zod.Schema<infer S>
+      ? S
+      : Record<string, unknown> | string
 
 /** Optional configuration for the request */
 export type RequestOptions = {
@@ -28,15 +27,21 @@ export type RequestOptions = {
   timeout?: number
   /** Expected schema for the response data. */
   schema?: zod.Schema
+  /** Prefix for the request tag */
+  prefix?: string
 }
 
 /** The method of the request */
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 /** The response of the request */
-export type ResponseObject<options extends RequestOptions = RequestOptions> = {
-  /** The data returned by the api. */
-  data: string | options['schema'] extends zod.Schema<infer S> ? S : never
+export type ResponseObject<Options extends RequestOptions = RequestOptions> = {
+  /** The final and formatted data returned by the api */
+  data: ResponseData<Options>
+  /** The headers returned by the api */
   headers: Headers
+  /** The status code returned by the api */
   status: number
+  /** Request tag */
+  tag: string
 }

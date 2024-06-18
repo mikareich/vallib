@@ -1,4 +1,4 @@
-class APIError extends Error {
+export default class APIError extends Error {
   name = 'APIError'
 
   constructor(
@@ -17,5 +17,3 @@ class APIError extends Error {
   static REQUEST_ERROR = (status: number) =>
     new APIError('The request was unsuccessful', status)
 }
-
-export default APIError
