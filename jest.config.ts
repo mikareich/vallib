@@ -1,10 +1,10 @@
-import type { Config } from "jest";
+import type { Config } from 'jest'
 
 const config: Config = {
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    '^.+\\.tsx?$': 'ts-jest',
   },
-};
+}
 
-export default config;
+export default config
