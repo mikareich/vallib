@@ -5,19 +5,17 @@ import APIError from './errors'
 
 /** Transforms the data to the correct type */
 function transformData(data: string, headers: Headers, schema?: z.ZodSchema) {
+  let parsedData: any
+  const isJSON = headers.get('content-type')?.includes('application/json')
+
   try {
-    if (schema) {
-      return schema.parse(data)
-    }
-
-    if (headers.get('content-type')?.includes('application/json')) {
-      return JSON.parse(data)
-    }
-
-    return data
+    if (isJSON) parsedData = JSON.parse(data)
+    if (schema) parsedData = schema.parse(parsedData)
   } catch {
     throw APIError.VALIDATION_ERROR()
   }
+
+  return parsedData
 }
 
 export default transformData

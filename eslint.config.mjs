@@ -5,6 +5,8 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default [
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     ignores: ['lib', 'node_modules'],
   },
@@ -15,6 +17,7 @@ export default [
     rules: {
       'no-console': 'warn',
       'no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -57,7 +60,4 @@ export default [
       ...prettier.rules,
     },
   },
-
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
 ]

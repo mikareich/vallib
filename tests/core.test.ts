@@ -5,6 +5,7 @@ import { z } from 'zod'
 
 import { core } from '../src'
 import APIError from '../src/core/errors'
+
 config()
 
 const { request, headers: reqHeaders } = core
