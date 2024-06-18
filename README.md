@@ -1,4 +1,4 @@
-![Banner](https://github.com/mikareich/val-api-test/blob/main/banner.png)
+![Banner](https://github.com/mikareich/vallib/blob/main/banner.png)
 
 # vallib
 
