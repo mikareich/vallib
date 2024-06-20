@@ -69,7 +69,7 @@ export const POST = <Options extends RequestOptions = RequestOptions>(
   url: string,
   body: BodyInit,
   options?: Options,
-) => request('POST', url, body, options)
+) => request<Options>('POST', url, body, options)
 
 /** Sends a PUT request to the specified url */
 export const PUT = <Options extends RequestOptions = RequestOptions>(

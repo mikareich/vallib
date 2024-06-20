@@ -1,4 +1,3 @@
-import cacheResponse from '../../codegen/cacheResponse'
 import AUTH_COOKIES from '../../src/endpoints/auth/authCookies'
 
 describe('Auth Cookies: Prepare cookies for auth request', () => {
@@ -7,10 +6,6 @@ describe('Auth Cookies: Prepare cookies for auth request', () => {
       proxy: process.env.PROXY_URL,
     })
 
-    cacheResponse(response)
-
-    console.log(response)
-
     const setCookie = response.headers.get('set-cookie')
 
     expect(response.status).toEqual(200)
@@ -18,4 +13,25 @@ describe('Auth Cookies: Prepare cookies for auth request', () => {
     const tdidCookie = setCookie?.includes('tdid=')
     expect(tdidCookie).toBeTruthy()
   }, 10000)
+
+  it('runs many times', async () => {
+    const NUM_REQUESTS = 10
+
+    let success = 0
+
+    await Promise.all(
+      Array.from({ length: NUM_REQUESTS }, async () => {
+        try {
+          await AUTH_COOKIES({ proxy: process.env.PROXY_URL })
+
+          success++
+        } catch (_error) {
+          // ignore
+        }
+      }),
+    )
+
+    console.log(`Success rate: ${success}/${NUM_REQUESTS}`)
+    expect(success).toBe(NUM_REQUESTS)
+  }, 10_000)
 })

@@ -31,6 +31,16 @@ export type RequestOptions = {
   prefix?: string
 }
 
+/** Helper type to merge the options into the final options object */
+export type EndpointOptions<
+  Options extends RequestOptions,
+  Schema extends RequestOptions['schema'],
+  Prefix extends RequestOptions['prefix'],
+> = Options & {
+  prefix: Prefix
+  schema: Schema
+}
+
 /** The method of the request */
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
