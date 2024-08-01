@@ -8,3 +8,6 @@ export const core = {
   headers,
   agent,
 }
+
+/** Auth endpoints */
+export * as AUTH from './endpoints/auth'

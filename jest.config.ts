@@ -5,6 +5,7 @@ const config: Config = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+  watchPathIgnorePatterns: ['.cache', 'schema'],
 }
 
 export default config

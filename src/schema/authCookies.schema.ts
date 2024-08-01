@@ -1,4 +1,4 @@
-// automatically generated schema, 2024-06-18T12:11:59.893Z
+// automatically generated schema, 2024-07-17T05:33:33.640Z
 
 import { z } from 'zod'
 

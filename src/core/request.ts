@@ -1,5 +1,7 @@
 import fetch, { BodyInit, RequestInit } from 'node-fetch'
 
+import { getAuthTokensFromHref } from '../endpoints/auth/cookieReauth'
+
 import { getDefaultAgent } from './agent'
 import APIError from './errors'
 import generateTag from './generateTag'
@@ -11,6 +13,8 @@ import { RequestMethod, RequestOptions, ResponseObject } from './types'
 export default async function request<
   Options extends RequestOptions = RequestOptions,
 >(method: RequestMethod, url: string, body?: BodyInit, options?: Options) {
+  const isCookieReauth = options?.prefix === 'cookieReauth'
+
   // set headers: apply default headers and cookies
   const headers = options?.headers || getDefaultHeaders()
   if (options?.cookies) headers.set('Cookie', options.cookies.join('; '))
@@ -22,10 +26,23 @@ export default async function request<
     body,
     agent: options?.httpsAgent || getDefaultAgent(options?.proxy),
     signal: options?.timeout ? AbortSignal.timeout(options.timeout) : undefined,
+    follow: isCookieReauth ? 1 : undefined,
+    redirect: 'manual',
   } as RequestInit
 
   const response = await fetch(url, finalOptions)
-  const rawData = await response.text()
+
+  let rawData: string
+
+  if (isCookieReauth) {
+    const href = response.headers.get('location')
+    if (!href) throw APIError.REQUEST_ERROR(400)
+
+    response.headers.set('Content-Type', 'application/json')
+    rawData = getAuthTokensFromHref(href)
+  } else {
+    rawData = await response.text()
+  }
 
   let data = rawData
 
@@ -52,7 +69,7 @@ export default async function request<
     /** The headers returned by the api */
     headers: response.headers,
     /** The status code returned by the api */
-    status: response.status,
+    status: isCookieReauth ? 200 : response.status,
     /** Request tag */
     tag,
   } as ResponseObject<Options>
@@ -67,21 +84,21 @@ export const GET = <Options extends RequestOptions = RequestOptions>(
 /** Sends a POST request to the specified url */
 export const POST = <Options extends RequestOptions = RequestOptions>(
   url: string,
-  body: BodyInit,
+  body?: BodyInit,
   options?: Options,
 ) => request<Options>('POST', url, body, options)
 
 /** Sends a PUT request to the specified url */
 export const PUT = <Options extends RequestOptions = RequestOptions>(
   url: string,
-  body: BodyInit,
+  body?: BodyInit,
   options?: Options,
 ) => request('PUT', url, body, options)
 
 /** Sends a PATCH request to the specified url */
 export const PATCH = <Options extends RequestOptions = RequestOptions>(
   url: string,
-  body: BodyInit,
+  body?: BodyInit,
   options?: Options,
 ) => request('PATCH', url, body, options)
 

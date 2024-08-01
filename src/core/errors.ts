@@ -2,10 +2,12 @@ export default class APIError extends Error {
   name = 'APIError'
 
   constructor(
+    /** The error message */
     message: string,
-    public status: number,
+    /** The status code of the api response */
+    public readonly status: number,
   ) {
-    super(message)
+    super(`${message} - status code ${status}`)
   }
 
   static VALIDATION_ERROR = () =>
@@ -15,5 +17,5 @@ export default class APIError extends Error {
     )
 
   static REQUEST_ERROR = (status: number) =>
-    new APIError('The request was unsuccessful', status)
+    new APIError(`The request was unsuccessful`, status)
 }

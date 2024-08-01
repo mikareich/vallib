@@ -35,9 +35,7 @@ export type RequestOptions = {
 export type EndpointOptions<
   Options extends RequestOptions,
   Schema extends RequestOptions['schema'],
-  Prefix extends RequestOptions['prefix'],
 > = Options & {
-  prefix: Prefix
   schema: Schema
 }
 

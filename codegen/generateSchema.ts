@@ -7,12 +7,13 @@ import { PATH_TO_CACHE } from './cacheResponse'
 
 const PATH_TO_SCHEMA = path.resolve(process.cwd(), 'src', 'schema')
 
-export default async function generateSchema(prefix: string) {
-  const encodedPrefix = Buffer.from(prefix).toString('base64')
+export default function generateSchema(prefix: string) {
+  // eslint-disable-next-line no-console
+  console.log('Generating schema for', prefix)
 
   // return all files with the prefix
   const fileNames = readdirSync(PATH_TO_CACHE).filter((file) =>
-    file.startsWith(encodedPrefix),
+    file.startsWith(prefix),
   )
 
   // decode response data
@@ -20,7 +21,7 @@ export default async function generateSchema(prefix: string) {
     const raw = readFileSync(path.join(PATH_TO_CACHE, file), 'utf-8')
     const decoded = Buffer.from(raw, 'base64').toString('utf-8')
     return JSON.parse(decoded)
-  })
+  }) as Record<string, never>[]
 
   // generate schema
   let schema = jsonToZod(responses)
@@ -39,6 +40,7 @@ export default ${prefix}_SCHEMA`
 
   // safe schema to file
   mkdirSync(PATH_TO_SCHEMA, { recursive: true })
+
   const schemaPath = path.resolve(PATH_TO_SCHEMA, `${prefix}.schema.ts`)
   writeFileSync(schemaPath, schema)
 }

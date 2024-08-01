@@ -14,6 +14,7 @@ describe('executes simple requests', () => {
       'https://httpbin.org/get',
       undefined,
       {
+        proxy: process.env.PROXY_URL,
         httpsAgent: new https.Agent({}), // default https options not working for this url
       },
     )
@@ -110,6 +111,7 @@ describe('handles proxy correctly', () => {
           proxy: process.env.PROXY_URL,
         },
       )
+
       ips.push(response.data.origin)
     }
 

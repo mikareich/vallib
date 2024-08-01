@@ -17,9 +17,6 @@ export default function generateTag(
   responseData: string,
   prefix: string = '',
 ) {
-  // hash the public request data
-  const prefixTag = Buffer.from(prefix).toString('base64')
-
   // hash the private request data
   const privateRequestHash = createHash('shake256', {
     outputLength: 4,
@@ -35,5 +32,5 @@ export default function generateTag(
     .digest('hex')
 
   // combine the two hashes
-  return `${prefix ? `${prefixTag}.` : ''}${privateRequestHash}.${responseHash}`
+  return `${prefix ? `${prefix}.` : ''}${privateRequestHash}.${responseHash}`
 }
