@@ -1,5 +1,17 @@
 ![Banner](https://github.com/mikareich/vallib/blob/main/banner.png)
 
+<div align="center">
+
+<img valign="top" src="https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=fff&style=for-the-badge" />
+
+<img valign="top" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge" />
+
+<img valign="top" src="https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=fff&style=for-the-badge" />
+
+<img valign="top" src="https://img.shields.io/badge/Riot%20Games-EB0029?logo=riotgames&logoColor=fff&style=for-the-badge" />
+
+</div>
+
 # vallib
 
 **vallib** is a TypeScript API wrapper for the [unofficial Valorant API](https://valapidocs.techchrism.me/). It is designed to be consistent and easy to configure, allowing for customizations like adding a proxy.
