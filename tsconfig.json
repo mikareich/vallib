@@ -16,5 +16,5 @@
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["src/**/*", "tests/**/*", "codegen/**/*"]
+  "include": ["src/**/*", "tests/**/*", "codgen/**/*"]
 }

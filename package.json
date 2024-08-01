@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "repository": "https://github.com/mikareich/vallib",
   "files": [
-    "lib"
+    "lib/**/*"
   ],
   "scripts": {
     "dev": "nodemon ./src/index.ts",
