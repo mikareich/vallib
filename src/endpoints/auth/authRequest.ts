@@ -2,9 +2,9 @@ import { PUT } from "~/src/core/request";
 import type { RequestOptionsWithCookies } from "~/src/core/types";
 
 type AuthCredentials = {
-  username: string;
-  password: string;
-  captcha: string;
+	username: string;
+	password: string;
+	captcha: string;
 };
 
 /**
@@ -13,23 +13,23 @@ type AuthCredentials = {
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/auth-request)
  */
 export default async function AUTH_REQUEST<
-  Options extends RequestOptionsWithCookies = RequestOptionsWithCookies,
+	Options extends RequestOptionsWithCookies = RequestOptionsWithCookies,
 >(credentials: AuthCredentials, options?: RequestOptionsWithCookies) {
-  const body = {
-    type: "auth",
-    language: "en_US",
-    remember: false,
-    riot_identity: credentials,
-  };
+	const body = {
+		type: "auth",
+		language: "en_US",
+		remember: false,
+		riot_identity: credentials,
+	};
 
-  const finalOptions = {
-    ...options,
-    prefix: "authRequest",
-  };
+	const finalOptions = {
+		...options,
+		prefix: "authRequest",
+	};
 
-  return PUT(
-    "https://auth.riotgames.com/api/v1/authorization",
-    JSON.stringify(body),
-    finalOptions
-  );
+	return PUT(
+		"https://auth.riotgames.com/api/v1/authorization",
+		JSON.stringify(body),
+		finalOptions,
+	);
 }

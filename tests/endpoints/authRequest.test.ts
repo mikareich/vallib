@@ -1,6 +1,5 @@
 describe("Auth Request: Perform authorization request to get token", () => {
 	it("should return 200", async () => {
-		// eslint-disable-next-line no-console
 		console.warn(
 			"AUTH REQUEST endpoint deprecated. All tests will be skipped!",
 		);
