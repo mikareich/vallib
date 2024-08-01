@@ -3,7 +3,10 @@ import type { EndpointOptions, RequestOptions } from "~/src/core/types";
 import authCookies_SCHEMA from "~/src/schema/authCookies.schema";
 
 /**
- * Prepare cookies for auth request
+ * Prepare cookies for auth request.
+ * Since it's part of the deprecated auth flow, it's recommended to
+ * not use this endpoint.
+ *
  * @deprecated
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/auth-cookies)
  */
