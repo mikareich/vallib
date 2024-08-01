@@ -45,7 +45,7 @@ const response = await AUTH.PLAYER_INFO(
 );
 ```
 
-To enhance the developer experience and ensure the reliability of the SDK, each endpoint is fully type-safe and, by default, is always validated against a schema that defines the expected response format. Although it is not recommended, you can opt out of this validation step using the endpoint option unsafeSkipValidation: true. However, if you do so, the type definition for the current endpoint's response will revert to string.
+To enhance the developer experience and ensure the reliability of the SDK, each endpoint is fully type-safe and, by default, is always validated against a schema that defines the expected response format. Although it is not recommended, you can opt out of this validation step using the endpoint option `unsafeSkipValidation: true`. However, if you do so, the type definition for the current endpoint's response will revert to string.
 
 ## Motivation
 
