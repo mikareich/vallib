@@ -4,8 +4,8 @@ import generateSchema from "./generateSchema";
 
 /** caches + generates schema for given response */
 export default function updateSchema(response: ResponseObject) {
-	const [prefix] = response.tag.split(".");
+  const [prefix] = response.tag.split(".");
 
-	cacheResponse(response);
-	generateSchema(prefix);
+  cacheResponse(response);
+  generateSchema(prefix);
 }

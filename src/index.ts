@@ -5,9 +5,9 @@ import { AUTH_COOKIES, COOKIE_REAUTH } from "./endpoints/auth";
 
 /** Core utils for making requests */
 export const core = {
-	request,
-	headers,
-	agent,
+  request,
+  headers,
+  agent,
 };
 
 /** Auth endpoints */
