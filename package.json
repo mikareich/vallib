@@ -4,12 +4,12 @@
   "main": "lib/index.js",
   "repository": "https://github.com/mikareich/vallib",
   "files": [
-    "lib/**/*"
+    "lib"
   ],
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "test": "jest --setupFiles dotenv/config",
-    "build": "rimraf lib && tspc",
+    "build": "rimraf lib && tspc src/index.ts",
     "lint": "tsc --noEmit && npx @biomejs/biome format --write ."
   },
   "devDependencies": {
