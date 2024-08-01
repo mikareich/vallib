@@ -1,5 +1,5 @@
 import { POST } from '../../core/request'
-import { EndpointOptions, RequestOptions } from '../../core/types'
+import type { EndpointOptions, RequestOptions } from '../../core/types'
 import authCookies_SCHEMA from '../../schema/authCookies.schema'
 
 /**

@@ -1,11 +1,11 @@
-import { getDefaultHeaders } from '../../core/headers'
-import { GET } from '../../core/request'
-import { EndpointOptions, RequestOptions } from '../../core/types'
-import playerInfo_SCHEMA from '../../schema/playerInfo.schema'
+import { getDefaultHeaders } from "../../core/headers";
+import { GET } from "../../core/request";
+import type { EndpointOptions, RequestOptions } from "../../core/types";
+import playerInfo_SCHEMA from "../../schema/playerInfo.schema";
 
 type AuthCredentials = {
-  authToken: string
-}
+  authToken: string;
+};
 
 /**
  * Get the PUUID and other info from a token
@@ -14,15 +14,15 @@ type AuthCredentials = {
 export default async function PLAYER_INFO<
   Options extends RequestOptions = RequestOptions,
 >({ authToken }: AuthCredentials, options?: Options) {
-  const headers = getDefaultHeaders()
-  headers.set('Authorization', `Bearer ${authToken}`)
+  const headers = getDefaultHeaders();
+  headers.set("Authorization", `Bearer ${authToken}`);
 
   const finalOptions = {
     ...options,
     headers,
-    prefix: 'playerInfo',
+    prefix: "playerInfo",
     schema: playerInfo_SCHEMA,
-  } as EndpointOptions<Options, typeof playerInfo_SCHEMA>
+  } as EndpointOptions<Options, typeof playerInfo_SCHEMA>;
 
-  return GET('https://auth.riotgames.com/userinfo', finalOptions)
+  return GET("https://auth.riotgames.com/userinfo", finalOptions);
 }

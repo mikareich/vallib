@@ -1,4 +1,4 @@
-import https from 'https'
+import https from 'node:https'
 
 import { HttpsProxyAgent } from 'https-proxy-agent'
 

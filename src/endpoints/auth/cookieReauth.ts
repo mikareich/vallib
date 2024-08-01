@@ -1,22 +1,19 @@
 import { GET } from '../../core/request'
-import { EndpointOptions, RequestOptions } from '../../core/types'
+import type { EndpointOptions, RequestOptions } from '../../core/types'
 import cookieReauth_SCHEMA from '../../schema/cookieReauth.schema'
 
 export function getAuthTokensFromHref(href: string) {
   const tokens = {} as Record<string, string>
   const url = new URL(href)
 
-  url.hash
-    .slice(1, url.hash.length)
-    .split('&')
-    .forEach((token) => {
-      const [_0, key] = token.match(/(.*?)=/) || []
-      const [_1, val] = token.match(/=(.*)/) || []
+  for (const token of url.hash.slice(1, url.hash.length).split('&')) {
+    const [_0, key] = token.match(/(.*?)=/) || []
+    const [_1, val] = token.match(/=(.*)/) || []
 
-      if (!key || !val) return
+    if (!key || !val) return
 
-      tokens[key] = val
-    })
+    tokens[key] = val
+  }
 
   return JSON.stringify(tokens)
 }

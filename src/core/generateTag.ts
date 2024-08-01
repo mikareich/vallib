@@ -1,8 +1,8 @@
-import { createHash } from 'crypto'
+import { createHash } from 'node:crypto'
 
-import { Headers, BodyInit } from 'node-fetch'
+import type { Headers, BodyInit } from 'node-fetch'
 
-import { RequestMethod } from './types'
+import type { RequestMethod } from './types'
 
 type RequestOptions = {
   headers: Headers

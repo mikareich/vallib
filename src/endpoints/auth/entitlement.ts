@@ -1,6 +1,6 @@
 import { getDefaultHeaders } from '../../core/headers'
 import { POST } from '../../core/request'
-import { EndpointOptions, RequestOptions } from '../../core/types'
+import type { EndpointOptions, RequestOptions } from '../../core/types'
 import entitlement_SCHEMA from '../../schema/entitlement.schema'
 
 type AuthCredentials = {

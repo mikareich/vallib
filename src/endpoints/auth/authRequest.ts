@@ -1,5 +1,5 @@
 import { PUT } from '../../core/request'
-import { RequestOptions } from '../../core/types'
+import type { RequestOptions } from '../../core/types'
 
 type AuthCredentials = {
   username: string

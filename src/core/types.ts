@@ -1,7 +1,7 @@
-import https from 'node:https'
+import type https from 'node:https'
 
-import { Headers } from 'node-fetch'
-import zod from 'zod'
+import type { Headers } from 'node-fetch'
+import type zod from 'zod'
 
 /** The final and formatted data returned by the api */
 type ResponseData<Options extends RequestOptions = RequestOptions> =
@@ -9,7 +9,7 @@ type ResponseData<Options extends RequestOptions = RequestOptions> =
     ? string
     : Options['schema'] extends zod.Schema<infer S>
       ? S
-      : Record<string, unknown> | string
+      : Record<string, string> | string
 
 /** Optional configuration for the request */
 export type RequestOptions = {
