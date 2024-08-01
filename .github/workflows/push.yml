@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: "20.x"
           registry-url: "https://registry.npmjs.org"
-      - name: update package versioning
-        run: npm version patch
       - run: npm ci
       - run: npm run build
       - run: npm publish --provenance --access public
