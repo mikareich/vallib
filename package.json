@@ -1,9 +1,11 @@
 {
   "name": "vallib",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "main": "lib/index.js",
   "repository": "https://github.com/mikareich/vallib",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "test": "jest --setupFiles dotenv/config",
