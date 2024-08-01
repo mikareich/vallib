@@ -1,5 +1,5 @@
-import { ENTITLEMENT } from "../../src/endpoints/auth";
-import getAuthToken from "../getAuthToken";
+import { ENTITLEMENT } from "~/src/endpoints/auth";
+import getAuthToken from "~/tests/getAuthToken";
 
 describe("Entitlement: Get entitlement for remote requests with a token", () => {
   it("should return a valid entitlement token", async () => {

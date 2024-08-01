@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import type { BodyInit, RequestInit } from "node-fetch";
 
-import { getAuthTokensFromHref } from "../endpoints/auth/cookieReauth";
+import { getAuthTokensFromHref } from "~/src/endpoints/auth/cookieReauth";
 
 import { getDefaultAgent } from "./agent";
 import APIError from "./errors";

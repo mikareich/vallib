@@ -1,4 +1,4 @@
-import { COOKIE_REAUTH } from "../src/endpoints/auth";
+import { COOKIE_REAUTH } from "~/src/endpoints/auth";
 
 export default async function getAuthToken() {
   const proxy = process.env.PROXY_URL;

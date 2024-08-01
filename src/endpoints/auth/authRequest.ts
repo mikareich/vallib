@@ -1,8 +1,5 @@
-import { PUT } from "../../core/request";
-import type {
-  RequestOptions,
-  RequestOptionsWithCookies,
-} from "../../core/types";
+import { PUT } from "~/src/core/request";
+import type { RequestOptionsWithCookies } from "~/src/core/types";
 
 type AuthCredentials = {
   username: string;

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "test": "jest --setupFiles dotenv/config",
-    "build": "rimraf lib && tsc",
+    "build": "rimraf lib && tspc",
     "lint": "tsc --noEmit && npx @biomejs/biome format --write ."
   },
   "devDependencies": {
@@ -25,8 +25,11 @@
     "rimraf": "^5.0.7",
     "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2",
+    "ts-patch": "^3.2.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.13.1"
+    "typescript-eslint": "^7.13.1",
+    "typescript-transform-paths": "^3.4.7"
   },
   "dependencies": {
     "https-proxy-agent": "^7.0.4",

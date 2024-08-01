@@ -1,4 +1,4 @@
-import { COOKIE_REAUTH } from "../../src/endpoints/auth";
+import { COOKIE_REAUTH } from "~/src/endpoints/auth";
 
 describe("Cookie Reauth: Get a new token using the cookies from a previous authorization request", () => {
   it("should return a new token", async () => {

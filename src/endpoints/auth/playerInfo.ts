@@ -1,7 +1,7 @@
-import { getDefaultHeaders } from "../../core/headers";
-import { GET } from "../../core/request";
-import type { EndpointOptions, RequestOptions } from "../../core/types";
-import playerInfo_SCHEMA from "../../schema/playerInfo.schema";
+import { getDefaultHeaders } from "~/src/core/headers";
+import { GET } from "~/src/core/request";
+import type { EndpointOptions, RequestOptions } from "~/src/core/types";
+import playerInfo_SCHEMA from "~/src/schema/playerInfo.schema";
 
 type AuthCredentials = {
   authToken: string;

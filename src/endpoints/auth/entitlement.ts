@@ -1,11 +1,11 @@
-import { getDefaultHeaders } from '../../core/headers'
-import { POST } from '../../core/request'
-import type { EndpointOptions, RequestOptions } from '../../core/types'
-import entitlement_SCHEMA from '../../schema/entitlement.schema'
+import { getDefaultHeaders } from "~/src/core/headers";
+import { POST } from "~/src/core/request";
+import type { EndpointOptions, RequestOptions } from "~/src/core/types";
+import entitlement_SCHEMA from "~/src/schema/entitlement.schema";
 
 type AuthCredentials = {
-  authToken: string
-}
+  authToken: string;
+};
 
 /**
  * Get entitlement for remote requests with a token
@@ -14,19 +14,19 @@ type AuthCredentials = {
 export default async function ENTITLEMENT<
   Options extends RequestOptions = RequestOptions,
 >({ authToken }: AuthCredentials, options?: Options) {
-  const headers = getDefaultHeaders()
-  headers.set('Authorization', `Bearer ${authToken}`)
+  const headers = getDefaultHeaders();
+  headers.set("Authorization", `Bearer ${authToken}`);
 
   const finalOptions = {
     ...options,
     headers,
-    prefix: 'entitlement',
+    prefix: "entitlement",
     schema: entitlement_SCHEMA,
-  } as EndpointOptions<Options, typeof entitlement_SCHEMA>
+  } as EndpointOptions<Options, typeof entitlement_SCHEMA>;
 
   return POST(
-    'https://entitlements.auth.riotgames.com/api/token/v1',
+    "https://entitlements.auth.riotgames.com/api/token/v1",
     undefined,
-    finalOptions,
-  )
+    finalOptions
+  );
 }

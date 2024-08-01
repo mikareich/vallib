@@ -1,12 +1,20 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"target": "es6",
-		"outDir": "./lib",
-		"strict": true,
-		"esModuleInterop": true,
-		"declaration": true
-	},
-	"include": ["src/**/*"]
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "outDir": "./lib",
+    "strict": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "plugins": [{ "transform": "typescript-transform-paths" }]
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["src/**/*", "tests/**/*", "codegen/**/*"]
 }

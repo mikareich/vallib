@@ -2,8 +2,8 @@ import https from "node:https";
 
 import { z } from "zod";
 
-import { core } from "../src";
-import APIError from "../src/core/errors";
+import { core } from "~/src";
+import APIError from "~/src/core/errors";
 
 const { request, headers: reqHeaders } = core;
 
@@ -16,7 +16,7 @@ describe("executes simple requests", () => {
       {
         proxy: process.env.PROXY_URL,
         httpsAgent: new https.Agent({}), // default https options not working for this url
-      },
+      }
     );
 
     const headers: Record<string, string> = {};
@@ -28,7 +28,7 @@ describe("executes simple requests", () => {
     }
 
     const everyDefaultHeaderPresent = Object.entries(
-      reqHeaders.getDefaultHeaders().entries(),
+      reqHeaders.getDefaultHeaders().entries()
     ).every(([key, value]) => {
       return headers[key] === value;
     });
@@ -39,7 +39,7 @@ describe("executes simple requests", () => {
   it("should return the correct response", async () => {
     const response = await request(
       "GET",
-      "https://jsonplaceholder.typicode.com/todos/1",
+      "https://jsonplaceholder.typicode.com/todos/1"
     );
 
     expect(response.data).toEqual({
@@ -50,7 +50,7 @@ describe("executes simple requests", () => {
     });
 
     expect(response.headers.get("content-type")).toEqual(
-      "application/json; charset=utf-8",
+      "application/json; charset=utf-8"
     );
 
     expect(response.status).toEqual(200);
@@ -109,7 +109,7 @@ describe("handles proxy correctly", () => {
         {
           schema: z.object({ origin: z.string() }),
           proxy: process.env.PROXY_URL,
-        },
+        }
       );
 
       ips.push(response.data.origin);

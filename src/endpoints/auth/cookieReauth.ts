@@ -1,10 +1,10 @@
-import { GET } from "../../core/request";
+import { GET } from "~/src/core/request";
 import type {
   EndpointOptions,
   RequestOptions,
   RequestOptionsWithCookies,
-} from "../../core/types";
-import cookieReauth_SCHEMA from "../../schema/cookieReauth.schema";
+} from "~/src/core/types";
+import cookieReauth_SCHEMA from "~/src/schema/cookieReauth.schema";
 
 export function getAuthTokensFromHref(href: string) {
   const tokens = {} as Record<string, string>;
