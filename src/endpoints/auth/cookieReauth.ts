@@ -1,21 +1,25 @@
-import { GET } from '../../core/request'
-import type { EndpointOptions, RequestOptions } from '../../core/types'
-import cookieReauth_SCHEMA from '../../schema/cookieReauth.schema'
+import { GET } from "../../core/request";
+import type {
+  EndpointOptions,
+  RequestOptions,
+  RequestOptionsWithCookies,
+} from "../../core/types";
+import cookieReauth_SCHEMA from "../../schema/cookieReauth.schema";
 
 export function getAuthTokensFromHref(href: string) {
-  const tokens = {} as Record<string, string>
-  const url = new URL(href)
+  const tokens = {} as Record<string, string>;
+  const url = new URL(href);
 
-  for (const token of url.hash.slice(1, url.hash.length).split('&')) {
-    const [_0, key] = token.match(/(.*?)=/) || []
-    const [_1, val] = token.match(/=(.*)/) || []
+  for (const token of url.hash.slice(1, url.hash.length).split("&")) {
+    const [_0, key] = token.match(/(.*?)=/) || [];
+    const [_1, val] = token.match(/=(.*)/) || [];
 
-    if (!key || !val) return
+    if (!key || !val) return;
 
-    tokens[key] = val
+    tokens[key] = val;
   }
 
-  return JSON.stringify(tokens)
+  return JSON.stringify(tokens);
 }
 
 /**
@@ -23,21 +27,16 @@ export function getAuthTokensFromHref(href: string) {
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/cookie-reauth)
  */
 export default async function COOKIE_REAUTH<
-  Options extends RequestOptions = RequestOptions,
->(
-  options: Options & {
-    /** Cookies from AUTH_COOKIES required */
-    cookies: string[]
-  },
-) {
+  Options extends RequestOptionsWithCookies = RequestOptionsWithCookies,
+>(options: Options) {
   const finalOptions = {
     ...options,
-    prefix: 'cookieReauth',
+    prefix: "cookieReauth",
     schema: cookieReauth_SCHEMA,
-  } as EndpointOptions<Options, typeof cookieReauth_SCHEMA>
+  } as EndpointOptions<Options, typeof cookieReauth_SCHEMA>;
 
   return GET(
-    'https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1&scope=account%20openid',
-    finalOptions,
-  )
+    "https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1&scope=account%20openid",
+    finalOptions
+  );
 }

@@ -62,7 +62,7 @@ export default async function request<
       method,
     },
     rawData,
-    options?.prefix || "",
+    options?.prefix || ""
   );
 
   return {
@@ -80,32 +80,32 @@ export default async function request<
 /** Sends a GET request to the specified url */
 export const GET = <Options extends RequestOptions = RequestOptions>(
   url: string,
-  options?: Options,
-) => request("GET", url, undefined, options);
+  options?: Options
+) => request<Options>("GET", url, undefined, options);
 
 /** Sends a POST request to the specified url */
 export const POST = <Options extends RequestOptions = RequestOptions>(
   url: string,
   body?: BodyInit,
-  options?: Options,
+  options?: Options
 ) => request<Options>("POST", url, body, options);
 
 /** Sends a PUT request to the specified url */
 export const PUT = <Options extends RequestOptions = RequestOptions>(
   url: string,
   body?: BodyInit,
-  options?: Options,
-) => request("PUT", url, body, options);
+  options?: Options
+) => request<Options>("PUT", url, body, options);
 
 /** Sends a PATCH request to the specified url */
 export const PATCH = <Options extends RequestOptions = RequestOptions>(
   url: string,
   body?: BodyInit,
-  options?: Options,
-) => request("PATCH", url, body, options);
+  options?: Options
+) => request<Options>("PATCH", url, body, options);
 
 /** Sends a DELETE request to the specified url */
 export const DELETE = <Options extends RequestOptions = RequestOptions>(
   url: string,
-  options?: Options,
-) => request("DELETE", url, undefined, options);
+  options?: Options
+) => request<Options>("DELETE", url, undefined, options);
