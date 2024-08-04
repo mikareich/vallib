@@ -11,9 +11,12 @@ import transformData from "./transformData";
 import type { RequestMethod, RequestOptions, ResponseObject } from "./types";
 
 /** Creates a request to the api with the given method and body */
-export default async function request<
-  Options extends RequestOptions = RequestOptions,
->(method: RequestMethod, url: string, body?: BodyInit, options?: Options) {
+export default async function request<Options extends RequestOptions>(
+  method: RequestMethod,
+  url: string,
+  body?: BodyInit,
+  options?: Options,
+) {
   const isCookieReauth = options?.prefix === "cookieReauth";
 
   // set headers: apply default headers and cookies
@@ -35,13 +38,14 @@ export default async function request<
 
   let rawData: string;
 
+  //
   if (isCookieReauth) {
     const href = response.headers.get("location");
 
     response.headers.set("Content-Type", "application/json");
     rawData = getAuthTokensFromHref(href as string) as string;
 
-    if (!href || !rawData) throw APIError.REQUEST_ERROR(400);
+    if (!href || !rawData) throw APIError.REQUEST_ERROR(400, options?.prefix);
   } else {
     rawData = await response.text();
   }
@@ -49,9 +53,15 @@ export default async function request<
   let data = rawData;
 
   if (!options?.unsafeSkipValidation) {
-    if (response.status >= 400) throw APIError.REQUEST_ERROR(response.status);
+    if (response.status >= 400)
+      throw APIError.REQUEST_ERROR(response.status, options?.prefix);
 
-    data = transformData(rawData, response.headers, options?.schema);
+    data = transformData(
+      rawData,
+      response.headers,
+      options?.schema,
+      options?.prefix,
+    );
   }
 
   const tag = generateTag(
@@ -78,34 +88,34 @@ export default async function request<
 }
 
 /** Sends a GET request to the specified url */
-export const GET = <Options extends RequestOptions = RequestOptions>(
+export const GET = <Options extends RequestOptions>(
   url: string,
   options?: Options,
-) => request<Options>("GET", url, undefined, options);
+) => request("GET", url, undefined, options);
 
 /** Sends a POST request to the specified url */
-export const POST = <Options extends RequestOptions = RequestOptions>(
+export const POST = <Options extends RequestOptions>(
   url: string,
   body?: BodyInit,
   options?: Options,
-) => request<Options>("POST", url, body, options);
+) => request("POST", url, body, options);
 
 /** Sends a PUT request to the specified url */
-export const PUT = <Options extends RequestOptions = RequestOptions>(
+export const PUT = <Options extends RequestOptions>(
   url: string,
   body?: BodyInit,
   options?: Options,
-) => request<Options>("PUT", url, body, options);
+) => request("PUT", url, body, options);
 
 /** Sends a PATCH request to the specified url */
-export const PATCH = <Options extends RequestOptions = RequestOptions>(
+export const PATCH = <Options extends RequestOptions>(
   url: string,
   body?: BodyInit,
   options?: Options,
-) => request<Options>("PATCH", url, body, options);
+) => request("PATCH", url, body, options);
 
 /** Sends a DELETE request to the specified url */
-export const DELETE = <Options extends RequestOptions = RequestOptions>(
+export const DELETE = <Options extends RequestOptions>(
   url: string,
   options?: Options,
-) => request<Options>("DELETE", url, undefined, options);
+) => request("DELETE", url, undefined, options);

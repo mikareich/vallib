@@ -1,5 +1,5 @@
 import { PUT } from "~/src/core/request";
-import type { RequestOptionsWithCookies } from "~/src/core/types";
+import type { EndpointOptionsWithCookies } from "~/src/core/types";
 
 type RiotIdentity = {
   username: string;
@@ -15,7 +15,7 @@ type RiotIdentity = {
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/auth-request)
  */
 export default async function AUTH_REQUEST<
-  Options extends RequestOptionsWithCookies = RequestOptionsWithCookies,
+  Options extends EndpointOptionsWithCookies,
 >(riot_identity: RiotIdentity, options?: Options) {
   const body = {
     type: "auth",

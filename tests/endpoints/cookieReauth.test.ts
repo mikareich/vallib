@@ -4,11 +4,16 @@ describe("Cookie Reauth: Get a new token using the cookies from a previous autho
   it("should return a new token", async () => {
     const cookiesWithSSID = [`ssid=${process.env.SSID_COOKIE}`];
 
-    const response = await COOKIE_REAUTH({
-      cookies: cookiesWithSSID,
-      proxy: process.env.PROXY_URL,
-    });
+    console.warn(
+      "Skipping test because it will invalidate the current token used for testing",
+      "You have to explicitly enable this test to run by removing this line",
+    );
 
-    expect(response.status).toBe(200);
+    // const response = await COOKIE_REAUTH({
+    //   cookies: cookiesWithSSID,
+    //   proxy: process.env.PROXY_URL,
+    // });
+
+    // expect(response.status).toBe(200);
   });
 });

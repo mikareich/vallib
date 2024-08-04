@@ -1,15 +1,16 @@
 import type { Headers } from "node-fetch";
-import { z } from "zod";
 
 import APIError from "./errors";
+import type { z } from "zod";
 
 /** Transforms the data to the correct type */
 export default function transformData(
   data: string,
   headers: Headers,
   schema?: z.ZodSchema,
+  prefix?: string,
 ) {
-  let parsedData: any;
+  let parsedData = data;
   const isJSON = headers.get("content-type")?.includes("application/json");
 
   try {

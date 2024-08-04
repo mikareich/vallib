@@ -1,6 +1,11 @@
+import { z } from "zod";
 import { getDefaultHeaders } from "~/src/core/headers";
-import { PUT } from "~/src/core/request";
-import type { EndpointOptions, RequestOptions } from "~/src/core/types";
+import request, { GET, PUT } from "~/src/core/request";
+import type {
+  EndpointOptions,
+  RequestOptions,
+  WithSchema,
+} from "~/src/core/types";
 import riotGeo_SCHEMA from "~/src/schema/riotGeo.schema";
 
 type RiotGeoAuth = {
@@ -12,9 +17,10 @@ type RiotGeoAuth = {
  * Get the region for a given ID token and auth token. The ID token and auth token can be obtained from Cookie Reauth.
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/riot-geo)
  */
-export default async function RIOT_GEO<
-  Options extends RequestOptions = RequestOptions,
->({ authToken, idToken }: RiotGeoAuth, options?: Options) {
+export default async function RIOT_GEO<Options extends EndpointOptions>(
+  { authToken, idToken }: RiotGeoAuth,
+  options?: Options,
+) {
   const headers = getDefaultHeaders();
   headers.set("Authorization", `Bearer ${authToken}`);
 
@@ -27,7 +33,7 @@ export default async function RIOT_GEO<
     headers,
     prefix: "riotGeo",
     schema: riotGeo_SCHEMA,
-  } as EndpointOptions<Options, typeof riotGeo_SCHEMA>;
+  } as unknown as WithSchema<Options, typeof riotGeo_SCHEMA>;
 
   return PUT(
     "https://riot-geo.pas.si.riotgames.com/pas/v1/product/valorant",

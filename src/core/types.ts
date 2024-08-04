@@ -4,9 +4,9 @@ import type { Headers } from "node-fetch";
 import type zod from "zod";
 
 /** The final and formatted data returned by the api */
-type ResponseData<Options extends RequestOptions = RequestOptions> =
+type ResponseData<Options extends RequestOptions> =
   Options["unsafeSkipValidation"] extends true
-    ? string
+    ? unknown
     : Options["schema"] extends zod.Schema<infer S>
       ? S
       : Record<string, string> | string;
@@ -31,16 +31,18 @@ export type RequestOptions = {
   prefix?: string;
 };
 
-export type RequestOptionsWithCookies = Omit<RequestOptions, "cookies"> & {
-  cookies: string[];
-};
+/** Subtype of `RequestOptions` */
+export type EndpointOptions = Omit<RequestOptions, "prefix" | "schema">;
 
-/** Helper type to merge the options into the final options object */
-export type EndpointOptions<
-  Options extends RequestOptions,
+/** Helper function to merge the request options with the prefix and schema */
+export type WithSchema<
+  Options extends EndpointOptions,
   Schema extends RequestOptions["schema"],
-> = Options & {
-  schema: Schema;
+> = Options & { schema: Schema };
+
+/** Helper type to require cookies in the request options */
+export type EndpointOptionsWithCookies = EndpointOptions & {
+  cookies: string[];
 };
 
 /** The method of the request */

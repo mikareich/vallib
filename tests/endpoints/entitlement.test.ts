@@ -8,6 +8,8 @@ describe("Entitlement: Get entitlement for remote requests with a token", () => 
 
     const response = await ENTITLEMENT({ authToken }, { proxy });
 
+    response.data.entitlements_token;
+
     expect(response.status).toBe(200);
   });
 });
