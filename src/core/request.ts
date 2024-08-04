@@ -38,7 +38,7 @@ export default async function request<Options extends RequestOptions>(
 
   let rawData: string;
 
-  //
+  // apply custom transform logic for cookie reauth
   if (isCookieReauth) {
     const href = response.headers.get("location");
 

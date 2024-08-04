@@ -9,9 +9,6 @@ type RiotIdentity = {
 
 /**
  * Perform authorization request to get token.
- * Since it's part of the deprecated auth flow, it's recommended to
- * not use this endpoint.
- * @deprecated
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/auth-request)
  */
 export default async function AUTH_REQUEST<

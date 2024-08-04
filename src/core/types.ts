@@ -3,6 +3,16 @@ import type https from "node:https";
 import type { Headers } from "node-fetch";
 import type zod from "zod";
 
+/** Different tokens params used by various endpoints */
+export type TokenParams = {
+  AuthToken: {
+    authToken: string;
+  };
+  IdToken: {
+    idToken: string;
+  };
+};
+
 /** The final and formatted data returned by the api */
 type ResponseData<Options extends RequestOptions> =
   Options["unsafeSkipValidation"] extends true

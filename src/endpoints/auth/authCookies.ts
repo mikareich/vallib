@@ -1,16 +1,9 @@
 import { POST } from "~/src/core/request";
-import type {
-  EndpointOptions,
-  RequestOptions,
-  WithSchema,
-} from "~/src/core/types";
+import type { EndpointOptions, WithSchema } from "~/src/core/types";
 import authCookies_SCHEMA from "~/src/schema/authCookies.schema";
 
 /**
  * Prepare cookies for auth request.
- * Since it's part of the deprecated auth flow, it's recommended to
- * not use this endpoint.
- *
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/auth-cookies)
  */
 export default async function AUTH_COOKIES<Options extends EndpointOptions>(

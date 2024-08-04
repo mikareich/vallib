@@ -8,7 +8,6 @@ import { PATH_TO_CACHE } from "./cacheResponse";
 const PATH_TO_SCHEMA = path.resolve(process.cwd(), "src", "schema");
 
 export default function generateSchema(prefix: string) {
-  // eslint-disable-next-line no-console
   console.log("Generating schema for", prefix);
 
   // return all files with the prefix

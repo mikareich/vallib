@@ -10,7 +10,7 @@ const getAuthFromFile = () => {
 
   const { access_token: authToken } = JSON.parse(content);
 
-  return authToken;
+  return authToken as string;
 };
 
 /** returns cached auth token */
@@ -19,8 +19,6 @@ export default async function getAuthToken() {
 
   const proxy = process.env.PROXY_URL;
   const cookiesWithSSID = [`ssid=${process.env.SSID_COOKIE}`];
-
-  console.log(proxy);
 
   const cookieReauth = await COOKIE_REAUTH({
     cookies: cookiesWithSSID,

@@ -1,24 +1,18 @@
-import { z } from "zod";
 import { getDefaultHeaders } from "~/src/core/headers";
-import request, { GET, PUT } from "~/src/core/request";
+import { PUT } from "~/src/core/request";
 import type {
   EndpointOptions,
-  RequestOptions,
+  TokenParams,
   WithSchema,
 } from "~/src/core/types";
 import riotGeo_SCHEMA from "~/src/schema/riotGeo.schema";
-
-type RiotGeoAuth = {
-  authToken: string;
-  idToken: string;
-};
 
 /**
  * Get the region for a given ID token and auth token. The ID token and auth token can be obtained from Cookie Reauth.
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/riot-geo)
  */
 export default async function RIOT_GEO<Options extends EndpointOptions>(
-  { authToken, idToken }: RiotGeoAuth,
+  { authToken, idToken }: TokenParams["AuthToken"] & TokenParams["IdToken"],
   options?: Options,
 ) {
   const headers = getDefaultHeaders();

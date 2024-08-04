@@ -1,12 +1,8 @@
 import { GET } from "~/src/core/request";
-import type {
-  EndpointOptions,
-  EndpointOptionsWithCookies,
-  WithSchema,
-} from "~/src/core/types";
+import type { EndpointOptionsWithCookies, WithSchema } from "~/src/core/types";
 import cookieReauth_SCHEMA from "~/src/schema/cookieReauth.schema";
 
-/** Get all auth tokens */
+/** Returns all tokens from a auth redirect url */
 export function getAuthTokensFromHref(href: string) {
   const tokens = {} as Record<string, string>;
   const url = new URL(href);
