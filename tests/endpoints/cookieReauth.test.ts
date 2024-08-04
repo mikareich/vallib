@@ -9,10 +9,10 @@ describe("Cookie Reauth: Get a new token using the cookies from a previous autho
       "You have to explicitly enable this test to run by removing this line",
     );
 
-    // const response = await COOKIE_REAUTH({
-    //   cookies: cookiesWithSSID,
-    //   proxy: process.env.PROXY_URL,
-    // });
+    const response = await COOKIE_REAUTH({
+      cookies: cookiesWithSSID,
+      proxy: process.env.PROXY_URL,
+    });
 
     // expect(response.status).toBe(200);
   });
