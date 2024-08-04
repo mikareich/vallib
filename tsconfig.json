@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "target": "es6",
     "outDir": "./lib",
     "strict": true,
@@ -12,6 +12,7 @@
       "~/*": ["./*"]
     },
     "plugins": [
+      { "transform": "typescript-transform-paths" },
       { "transform": "typescript-transform-paths", "afterDeclarations": true }
     ],
     "resolveJsonModule": true
