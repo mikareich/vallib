@@ -6,12 +6,8 @@ describe("Pas Token: Get a PAS token using the auth token.", () => {
     const authToken = await getAuthToken();
 
     const response = await PAS_TOKEN(
-      {
-        authToken,
-      },
-      {
-        proxy: process.env.PROXY_URL,
-      },
+      { authToken },
+      { proxy: process.env.PROXY_URL },
     );
 
     expect(response.status).toBe(200);
