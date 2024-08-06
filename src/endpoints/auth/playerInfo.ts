@@ -22,7 +22,7 @@ export default async function PLAYER_INFO<Options extends EndpointOptions>(
     ...options,
     headers,
     prefix: "playerInfo",
-    schema: playerInfo_SCHEMA,
+    // schema: playerInfo_SCHEMA,
   } as unknown as WithSchema<Options, typeof playerInfo_SCHEMA>;
 
   return GET("https://auth.riotgames.com/userinfo", finalOptions);
