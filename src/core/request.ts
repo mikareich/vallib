@@ -8,7 +8,11 @@ import APIError from "./errors";
 import generateTag from "./generateTag";
 import { getDefaultHeaders } from "./headers";
 import transformData from "./transformData";
-import type { RequestMethod, RequestOptions, ResponseObject } from "./types";
+import type {
+  RequestMethod,
+  RequestOptions,
+  ResponseObject,
+} from "~/src/types/core.types";
 
 /** Creates a request to the api with the given method and body */
 export default async function request<Options extends RequestOptions>(

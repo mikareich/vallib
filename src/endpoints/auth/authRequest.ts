@@ -1,5 +1,5 @@
 import { PUT } from "~/src/core/request";
-import type { EndpointOptionsWithCookies } from "~/src/core/types";
+import type { EndpointOptionsWithCookies } from "~/src/types/core.types";
 
 type RiotIdentity = {
   username: string;

@@ -1,5 +1,8 @@
 import { GET } from "~/src/core/request";
-import type { EndpointOptionsWithCookies, WithSchema } from "~/src/core/types";
+import type {
+  EndpointOptionsWithCookies,
+  WithSchema,
+} from "~/src/types/core.types";
 import cookieReauth_SCHEMA from "~/src/schema/cookieReauth.schema";
 
 /** Returns all tokens from a auth redirect url */

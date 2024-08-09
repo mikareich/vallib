@@ -1,5 +1,5 @@
 import { PUT } from "~/src/core/request";
-import type { EndpointOptions } from "~/src/core/types";
+import type { EndpointOptions } from "~/src/types/core.types";
 
 type MultiFactorAuth = {
   otp: string;

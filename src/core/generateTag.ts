@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 
 import type { Headers, BodyInit } from "node-fetch";
 
-import type { RequestMethod } from "./types";
+import type { RequestMethod } from "~/src/types/core.types";
 
 type RequestOptions = {
   headers: Headers;

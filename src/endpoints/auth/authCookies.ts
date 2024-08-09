@@ -1,5 +1,5 @@
 import { POST } from "~/src/core/request";
-import type { EndpointOptions, WithSchema } from "~/src/core/types";
+import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
 import authCookies_SCHEMA from "~/src/schema/authCookies.schema";
 
 /**

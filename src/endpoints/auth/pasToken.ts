@@ -1,10 +1,8 @@
 import { getDefaultHeaders } from "~/src/core/headers";
 import { GET } from "~/src/core/request";
-import type {
-  EndpointOptions,
-  TokenParams,
-  WithSchema,
-} from "~/src/core/types";
+import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
+
+import type { TokenParams } from "~/src/types/riot.types";
 import pasToken_SCHEMA from "~/src/schema/pasToken.schema";
 
 /**
