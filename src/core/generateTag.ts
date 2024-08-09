@@ -15,7 +15,7 @@ type RequestOptions = {
 export default function generateTag(
   requestOptions: RequestOptions,
   responseData: string,
-  prefix: string = "",
+  prefix = "",
 ) {
   // hash the private request data
   const privateRequestHash = createHash("shake256", {

@@ -4,10 +4,14 @@ type TokenResponse = {
   entitlementsToken: string;
 };
 
+let tokens: TokenResponse | null = null;
+
 /** returns cached auth token */
 export default async function getAuthToken() {
-  const response = await fetch(process.env.TOKEN_API as string);
-  const tokens = await response.json();
+  if (tokens) return tokens;
 
-  return tokens as TokenResponse;
+  const response = await fetch(process.env.TOKEN_API as string);
+  tokens = (await response.json()) as TokenResponse;
+
+  return tokens;
 }

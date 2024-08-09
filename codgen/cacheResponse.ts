@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-import type { ResponseObject } from "~/src/core/types";
+import type { ResponseObject } from "~/src/types/core.types";
 
 export const PATH_TO_CACHE = path.resolve(process.cwd(), ".cache");
 

@@ -1,4 +1,4 @@
-import type { ResponseObject } from "~/src/core/types";
+import type { ResponseObject } from "~/src/types/core.types";
 import cacheResponse from "./cacheResponse";
 import generateSchema from "./generateSchema";
 
