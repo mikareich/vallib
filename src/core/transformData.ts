@@ -17,7 +17,7 @@ export default function transformData(
     if (isJSON) parsedData = JSON.parse(data);
     if (schema) parsedData = schema.parse(parsedData);
   } catch {
-    throw APIError.VALIDATION_ERROR();
+    throw APIError.VALIDATION_ERROR(prefix);
   }
 
   return parsedData;

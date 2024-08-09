@@ -11,8 +11,8 @@ export type TokenParams = {
   IdToken: {
     idToken: string;
   };
-  EntitlementToken: {
-    entitlementToken: string;
+  EntitlementsToken: {
+    entitlementsToken: string;
   };
 };
 

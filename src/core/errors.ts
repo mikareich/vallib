@@ -15,11 +15,7 @@ export default class APIError extends Error {
   }
 
   static VALIDATION_ERROR = (endpoint?: string) =>
-    new APIError(
-      "The response was not in the expected format (could not transform data)",
-      400,
-      endpoint,
-    );
+    new APIError("The response was not in the expected format", 400, endpoint);
 
   static REQUEST_ERROR = (status: number, endpoint?: string) =>
     new APIError("The request was unsuccessful", status, endpoint);

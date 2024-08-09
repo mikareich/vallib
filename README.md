@@ -16,9 +16,9 @@
 
 **vallib** is a TypeScript API wrapper for the [unofficial Valorant API](https://valapidocs.techchrism.me/). It is designed to be consistent and easy to configure, allowing for customizations like adding a proxy.
 
-**🛡️ Type Safety**: Written in TypeScript, vallib provides type definitions for every endpoint. Additionally, each API response is validated against a predefined schema, ensuring consistency and reliability.
+**🛡 Type Safety**: Written in TypeScript, vallib provides type definitions for every endpoint. Additionally, each API response is validated against a predefined schema, ensuring consistency and reliability.
 
-**♻️ Adaptable**: vallib is built for flexibility. You can easily configure the client to use a proxy, skip validation steps, adjust the HTTP client settings, or simply use the default configurations.
+**♻ Adaptable**: vallib is built for flexibility. You can easily configure the client to use a proxy, skip validation steps, adjust the HTTP client settings, or simply use the default configurations.
 
 ## Installation and Usage
 

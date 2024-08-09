@@ -3,7 +3,7 @@ import getAuthToken from "../getAuthToken";
 
 describe("Pas Token: Get a PAS token using the auth token.", () => {
   it("should return a PAS token", async () => {
-    const authToken = await getAuthToken();
+    const { authToken } = await getAuthToken();
 
     const response = await PAS_TOKEN(
       { authToken },

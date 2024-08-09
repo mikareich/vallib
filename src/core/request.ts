@@ -40,6 +40,7 @@ export default async function request<Options extends RequestOptions>(
 
   // apply custom transform logic for cookie reauth
   if (isCookieReauth) {
+    console.log(response);
     const href = response.headers.get("location");
 
     response.headers.set("Content-Type", "application/json");
