@@ -17,6 +17,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.3",
     "@types/node-fetch": "^2.6.11",
+    "axios": "^1.7.3",
     "dotenv": "^16.4.5",
     "jest": "^29.7.0",
     "json-to-zod": "^1.1.2",

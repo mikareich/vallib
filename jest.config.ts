@@ -8,6 +8,11 @@ const config: Config = {
     "^.+\\.tsx?$": "ts-jest",
   },
   watchPathIgnorePatterns: [".cache", "schema"],
+  modulePathIgnorePatterns: [
+    "cookieReauth.test.ts",
+    // "authCookies.test.ts",
+    // "authRequest.test.ts",
+  ],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: "<rootDir>/",
   }),

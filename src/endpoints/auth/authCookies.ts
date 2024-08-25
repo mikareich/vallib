@@ -1,6 +1,6 @@
 import { POST } from "~/src/core/request";
-import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
 import authCookies_SCHEMA from "~/src/schema/authCookies.schema";
+import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
 
 /**
  * Prepare cookies for auth request.
@@ -10,15 +10,11 @@ export default async function AUTH_COOKIES<Options extends EndpointOptions>(
   options?: Options,
 ) {
   const body = {
-    acr_values: "",
-    claims: "",
-    client_id: "riot-client",
-    code_challenge: "",
-    code_challenge_method: "",
+    client_id: "play-valorant-web-prod",
     nonce: "1",
-    redirect_uri: "http://localhost/redirect",
+    redirect_uri: "https://playvalorant.com/opt_in",
     response_type: "token id_token",
-    scope: "openid link ban lol_region lol summoner offline_access",
+    scope: "account openid",
   };
 
   const finalOptions = {

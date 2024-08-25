@@ -1,6 +1,5 @@
 import { getDefaultHeaders } from "~/src/core/headers";
 import { GET } from "~/src/core/request";
-import { RIOT_CLIENT_PLATFORM, RIOT_CLIENT_VERSION } from "~/src/core/version";
 import fetchContent_SCHEMA from "~/src/schema/fetchContent.schema";
 import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
 import type { Shard, TokenParams } from "~/src/types/riot.types";
@@ -18,8 +17,6 @@ export default async function FETCH_CONTENT<Options extends EndpointOptions>(
   options?: Options,
 ) {
   const headers = getDefaultHeaders();
-  headers.set("X-Riot-ClientPlatform", RIOT_CLIENT_PLATFORM);
-  headers.set("X-Riot-ClientVersion", RIOT_CLIENT_VERSION);
   headers.set("X-Riot-Entitlements-JWT", entitlementsToken);
   headers.set("Authorization", `Bearer ${authToken}`);
 

@@ -39,7 +39,6 @@ export default async function request<Options extends RequestOptions>(
   } as RequestInit;
 
   const response = await fetch(url, finalOptions);
-
   let rawData: string;
 
   // apply custom transform logic for cookie reauth
@@ -54,7 +53,6 @@ export default async function request<Options extends RequestOptions>(
   } else {
     rawData = await response.text();
   }
-
   let data = rawData;
 
   if (!options?.unsafeSkipValidation) {

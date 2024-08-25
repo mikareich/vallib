@@ -1,10 +1,10 @@
 import { PLAYER_INFO } from "~/src/endpoints/auth";
-import getAuthToken from "~/tests/getAuthToken";
+import getTokens from "~/tests/getTokens";
 
 describe("Player Info: Get the PUUID and other info from a token", () => {
   it("should give a full scoped player info response back", async () => {
     const proxy = process.env.PROXY_URL;
-    const { authToken } = await getAuthToken();
+    const { authToken } = await getTokens();
 
     const response = await PLAYER_INFO({ authToken }, { proxy });
 

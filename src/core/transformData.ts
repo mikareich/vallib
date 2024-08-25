@@ -1,7 +1,16 @@
 import type { Headers } from "node-fetch";
 
-import APIError from "./errors";
 import type { z } from "zod";
+import APIError from "./errors";
+
+const isParseable = (data: string) => {
+  try {
+    JSON.parse(data);
+    return true;
+  } catch {
+    return false;
+  }
+};
 
 /** Transforms the data to the correct type */
 export default function transformData(
@@ -11,7 +20,9 @@ export default function transformData(
   prefix?: string,
 ) {
   let parsedData = data;
-  const isJSON = headers.get("content-type")?.includes("application/json");
+  const isJSON =
+    headers.get("content-type")?.includes("application/json") ||
+    isParseable(data);
 
   try {
     if (isJSON) parsedData = JSON.parse(data);

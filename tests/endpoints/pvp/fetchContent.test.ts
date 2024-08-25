@@ -1,5 +1,5 @@
 import { FETCH_CONTENT } from "~/src/endpoints/pvp";
-import getAuthToken from "~/tests/getAuthToken";
+import getTokens from "~/tests/getTokens";
 
 const proxy = process.env.PROXY_URL;
 
@@ -9,7 +9,7 @@ describe("Fetch Content: Get a list of seasons, acts, and events", () => {
   test.each(allShards)(
     "should return a list of seasons, acts, and events for %s shard",
     async (shard) => {
-      const { authToken, entitlementsToken } = await getAuthToken();
+      const { authToken, entitlementsToken } = await getTokens();
       const response = await FETCH_CONTENT(
         {
           authToken,

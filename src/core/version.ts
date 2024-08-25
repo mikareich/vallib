@@ -10,4 +10,4 @@ export const RIOT_CLIENT_PLATFORM =
 
 /** The default user agent for the api */
 export const RIOT_USER_AGENT =
-  "xxxrRiotGamesApi/24.3.0.3124 rso-auth (Windows;10;;Home, x64) riot_client/0"; // `RiotClient/${VALORANT_VERSION} rso-auth (Windows;10;;Professional, x64)`
+  "xxxxxRiotGamesApi/24.3.0.3124xxxxxxx rso-auth (Windows;10;;Home, x64) riot_client/0"; // `RiotClient/${VALORANT_VERSION} rso-auth (Windows;10;;Professional, x64)`
