@@ -23,8 +23,8 @@ export type RequestOptions = {
   httpsAgent?: https.Agent;
   /** Whether to skip validation of the response data. */
   unsafeSkipValidation?: boolean;
-  /** The timeout for the request in milliseconds. */
-  timeout?: number;
+  /** An abort signal you can hook the request to. */
+  signal?: AbortSignal;
   /** Expected schema for the response data. */
   schema?: zod.Schema;
   /** Prefix for the request tag */

@@ -15,7 +15,7 @@ export function getDefaultHeaders(additionalHeaders?: Headers) {
   headers.set("User-Agent", RIOT_USER_AGENT);
   headers.set("Content-Type", "application/json");
   headers.set("Cache-Control", "no-cache");
-  headers.set("Accept", "application/json");
+  headers.set("Accept", "*/*");
 
   headers.set("X-Riot-ClientPlatform", RIOT_CLIENT_PLATFORM);
   headers.set("X-Riot-ClientVersion", RIOT_CLIENT_VERSION);

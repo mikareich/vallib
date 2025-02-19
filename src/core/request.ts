@@ -33,7 +33,7 @@ export default async function request<Options extends RequestOptions>(
     headers,
     body,
     agent: options?.httpsAgent || getDefaultAgent(options?.proxy),
-    signal: options?.timeout ? AbortSignal.timeout(options.timeout) : undefined,
+    signal: options?.signal,
     follow: isCookieReauth ? 1 : undefined,
     redirect: "manual",
   } as RequestInit;
@@ -43,13 +43,13 @@ export default async function request<Options extends RequestOptions>(
 
   // apply custom transform logic for cookie reauth
   if (isCookieReauth) {
-    console.log(response);
     const href = response.headers.get("location");
 
     response.headers.set("Content-Type", "application/json");
     rawData = getAuthTokensFromHref(href as string) as string;
 
-    if (!href || !rawData) throw APIError.REQUEST_ERROR(400, options?.prefix);
+    if (!rawData)
+      throw APIError.REQUEST_ERROR(response.status, options?.prefix);
   } else {
     rawData = await response.text();
   }

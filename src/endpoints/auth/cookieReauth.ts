@@ -6,15 +6,17 @@ import type {
 import cookieReauth_SCHEMA from "~/src/schema/cookieReauth.schema";
 
 /** Returns all tokens from a auth redirect url */
-export function getAuthTokensFromHref(href: string) {
+export function getAuthTokensFromHref(href?: string) {
   const tokens = {} as Record<string, string>;
+
+  if (!href) return null;
   const url = new URL(href);
 
   for (const token of url.hash.slice(1, url.hash.length).split("&")) {
     const [_0, key] = token.match(/(.*?)=/) || [];
     const [_1, val] = token.match(/=(.*)/) || [];
 
-    if (!key || !val) return;
+    if (!key || !val) return null;
 
     tokens[key] = val;
   }
