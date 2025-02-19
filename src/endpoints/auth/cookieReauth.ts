@@ -23,7 +23,7 @@ export function getAuthTokensFromHref(href: string) {
 }
 
 /**
- * Get a new token using the cookies from a previous authorization request
+ * Get a new token using the cookies from a previous authorization request (ssid token and clid=uw1)
  * @link [valapidocs.techchrism.me](https://valapidocs.techchrism.me/endpoint/cookie-reauth)
  */
 export default async function COOKIE_REAUTH<
