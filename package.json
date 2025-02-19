@@ -1,6 +1,6 @@
 {
   "name": "vallib",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "main": "lib/index.js",
   "repository": "https://github.com/mikareich/vallib",
   "files": ["lib"],
@@ -33,5 +33,11 @@
     "https-proxy-agent": "^7.0.4",
     "node-fetch": "^2.7.0",
     "zod": "^3.23.8"
+  },
+  "peerDependencies": {
+    "node-fetch": "^2.7.0"
+  },
+  "optionalDependencies": {
+    "@types/node-fetch": "^2.6.11"
   }
 }

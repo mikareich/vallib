@@ -1,6 +1,6 @@
 import type { Headers } from "node-fetch";
 
-import type { z } from "zod";
+import { ZodError, type z } from "zod";
 import APIError from "./errors";
 
 const isParseable = (data: string) => {
@@ -27,7 +27,8 @@ export default function transformData(
   try {
     if (isJSON) parsedData = JSON.parse(data);
     if (schema) parsedData = schema.parse(parsedData);
-  } catch {
+  } catch (error) {
+    if (error instanceof ZodError) throw APIError.ZOD_ERROR(error, prefix);
     throw APIError.VALIDATION_ERROR(prefix);
   }
 

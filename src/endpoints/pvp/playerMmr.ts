@@ -1,6 +1,6 @@
 import { getDefaultHeaders } from "~/src/core/headers";
 import { GET } from "~/src/core/request";
-import type playerMmr_SCHEMA from "~/src/schema/playerMmr.schema";
+import playerMmr_SCHEMA from "~/src/schema/playerMmr.schema";
 import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
 import type { Shard, TokenParams } from "~/src/types/riot.types";
 
@@ -23,7 +23,7 @@ export default async function PLAYER_MMR<Options extends EndpointOptions>(
     ...options,
     headers,
     prefix: "playerMmr",
-    // schema: playerMmr_SCHEMA,
+    schema: playerMmr_SCHEMA,
   } as unknown as WithSchema<Options, typeof playerMmr_SCHEMA>;
 
   return GET(
