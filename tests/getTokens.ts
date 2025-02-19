@@ -11,8 +11,15 @@ let tokens: TokenResponse | null = null;
 export default async function getTokens() {
   if (tokens) return tokens;
 
-  const response = await fetch(process.env.TOKEN_API as string);
-  tokens = (await response.json()) as TokenResponse;
+  tokens = {
+    puuid: process.env.PUUID as string,
+    authToken: process.env.AUTH_TOKEN as string,
+    entitlementsToken: process.env.ENTITLEMENTS_TOKEN as string,
+    idToken: process.env.ID_TOKEN as string,
+  };
+
+  // const response = await fetch(process.env.TOKEN_API as string);
+  // tokens = (await response.json()) as TokenResponse;
 
   return tokens;
 }
