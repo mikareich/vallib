@@ -1,6 +1,7 @@
 import { getDefaultHeaders } from "~/src/core/headers";
 import { GET } from "~/src/core/request";
-import type { EndpointOptions } from "~/src/types/core.types";
+import competitiveUpdates_SCHEMA from "~/src/schema/competitiveUpdates.schema";
+import type { EndpointOptions, WithSchema } from "~/src/types/core.types";
 import type { Shard, TokenParams } from "~/src/types/riot.types";
 
 type Params = TokenParams["AuthToken"] &
@@ -46,8 +47,8 @@ export default async function COMPETITIVE_UPDATES<
     ...options,
     headers,
     prefix: "competitiveUpdates",
-    // schema: accountXp_SCHEMA,
-  } as unknown as any;
+    schema: competitiveUpdates_SCHEMA,
+  } as unknown as WithSchema<Options, typeof competitiveUpdates_SCHEMA>;
 
   return GET(url.href, finalOptions);
 }

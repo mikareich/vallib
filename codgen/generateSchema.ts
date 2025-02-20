@@ -4,6 +4,7 @@ import path from "node:path";
 import jsonToZod from "json-to-zod";
 
 import { PATH_TO_CACHE } from "./cacheResponse";
+import minifyZodSchema from "./minifySchema";
 
 const PATH_TO_SCHEMA = path.resolve(process.cwd(), "src", "schema");
 
@@ -36,6 +37,8 @@ import { z } from "zod"
 const ${prefix}_SCHEMA = ${schema}
 
 export default ${prefix}_SCHEMA`;
+
+  schema = minifyZodSchema(schema);
 
   // safe schema to file
   mkdirSync(PATH_TO_SCHEMA, { recursive: true });
