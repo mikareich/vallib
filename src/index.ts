@@ -9,6 +9,9 @@ export const core = {
   agent,
 };
 
+/** Endpoint types */
+export * as types from "./types/endpoint.types";
+
 /** Auth endpoints */
 export * as AUTH from "./endpoints/auth";
 

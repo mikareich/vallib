@@ -1,6 +1,6 @@
 {
   "name": "vallib",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "main": "lib/index.js",
   "repository": "https://github.com/mikareich/vallib",
   "files": ["lib"],
